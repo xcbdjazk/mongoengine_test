@@ -24,7 +24,7 @@ class User(DynamicDocument):
     # roles = ListField(ReferenceField(Role, reverse_delete_rule=CASCADE))   # 任何对象的字段引用到这个对象的会被先删除
     # roles = ListField(ReferenceField(Role, reverse_delete_rule=PULL))  # 移除对于对象的引用关系
     roles = ListField(ReferenceField(Role, reverse_delete_rule=NULLIFY))    # 任何对象的字段关联到这个对象的如果被删除，那么这个document也会被删除，关联关系作废。
-
+    # todo  CASCADE 和 NULLIFY 注释有点问题 应该互换?
 
 def clear():
     for i in Role.objects.all():

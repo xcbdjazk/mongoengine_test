@@ -2,12 +2,13 @@
 
 from mongoengine import *
 
-connect('test', host='mongo', port=27017)  # todo : mongo is system Hosts file
+connect('test_mongo1', host='mongo', port=27017)  # todo : mongo is system Hosts file
 size = (("zzzz", 1), ("2", 2))
 
 
 class User(Document):
     meta = {"collection": "user"}
+    int_id = SequenceField()
     username = StringField(choices=size)
     pwd = StringField()
 
@@ -32,6 +33,7 @@ class Post(DynamicDocument):
 
 
 class Posts(Post):
+    ids = IntField()
     pppp = StringField()
 
 
@@ -46,41 +48,12 @@ class Page(DynamicDocument):
 
 
 if __name__ == "__main__":
-    # r = Role()
-    # r.role_id = 1
-    # r.aa = "a"
-    # r.save()
-    # u = User(username="zzzz", pwd="111222333")
-    # setattr(u, "a", "1")
-    # u.aa = 1
-    # u.save()
-    # print(u)
-    # us = User.objects(pwd="111222333").first()
-    # us = User.objects(pwd="111222333").count()
-    # print us, type(us.username)
-    # for u in us:
-    #     print us.pwd
-    # p = Post()
-    # p.post = ["a", "b"]
-    # p.save()
-    # c1 = Comment(com=["a", "b"])
-    # c2 = Comment(com=["1", "2"])
-    # p = Page(pages=[c1, c2])
-    # p.save()
-    # p = Page.objects.first()
-    # print p.pages[0].com
-    # for c in p.pages:
-    #     print c.com
-    # u = User.objects(pwd="111222333").first()
-    # sub = SubUser()
-    # sub.sub_user = u
-    # sub.save()
-    # u = SubUser.objects.first()
-    # print u.sub_user.username
-    ps = Posts()
-    ps.post = ["1"]
-    ps.pppp = "123"
-    ps.save()
-    print(ps.id)
-    ps.pppp = "a"
-    ps.save()
+
+    # for i in range(20):
+    #     p = Posts()
+    #     p.ids = i
+    #     p.save()
+    #     print ('save ok!!!')
+    user = User()
+    user.username = 'zzzz'
+    user.save()
