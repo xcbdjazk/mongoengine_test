@@ -1,5 +1,5 @@
 # coding=utf-8
-from mongoengine import connect, DynamicDocument
+from mongoengine import connect, DynamicDocument, EmbeddedDocument
 from mongoengine import ListField, StringField, IntField, ReferenceField
 from mongoengine import NULLIFY, DO_NOTHING, DENY, CASCADE, PULL
 import time
